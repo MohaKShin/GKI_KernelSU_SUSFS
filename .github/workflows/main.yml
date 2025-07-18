@@ -99,7 +99,6 @@ jobs:
           GITLAB_REPO="susfs4ksu"
           
           declare -A BRANCH_MAP=(
-            ["gki_android13_5_10"]="gki-android13-5.10"
             ["gki_android13_5_15"]="gki-android13-5.15"
           )
           
@@ -145,7 +144,7 @@ jobs:
         run: |
             LATEST_TAG=$(gh api repos/${{ github.repository }}/tags --jq '.[0].name')
             if [ -z "$LATEST_TAG" ]; then
-              LATEST_TAG="v1.5.9-r0"
+              LATEST_TAG="v15.5 Only latest dev"
             fi
             
             NEW_TAG=$(echo "$LATEST_TAG" | awk -F'-r' '{suffix=$2; if (!suffix) suffix=0; suffix++; printf "%s-r%d", $1, suffix}')
@@ -200,7 +199,6 @@ jobs:
           -> 5ec1cff: [${{ env.MKSU_REF }}](${{ env.MKSU_URL }})
           -> KernelSU Next: [${{ env.NEXT_REF }}](${{ env.NEXT_URL }})
           -> SUSFS4KSU: 
-            -> gki-android13-5.10: [${{ env.COMMIT_HASH_gki_android13_5_10 }}](${{ env.COMMIT_URL_gki_android13_5_10 }})
             -> gki-android13-5.15: [${{ env.COMMIT_HASH_gki_android13_5_15 }}](${{ env.COMMIT_URL_gki_android13_5_15 }})
           EOF
 
